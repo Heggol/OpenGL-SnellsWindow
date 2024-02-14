@@ -44,6 +44,9 @@ int main()
     {
         // input processing
         processInput(window);
+        //change colour of window
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
         // make window interactable
         glfwSwapBuffers(window);
         glfwPollEvents();
