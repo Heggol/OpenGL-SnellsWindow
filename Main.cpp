@@ -90,6 +90,24 @@ int main()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+    //triangle display
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f, //left point
+        0.5f, -0.5f, 0.0f, //right point
+        0.0f, 0.5f, 0.0f, //top point
+    };
+    unsigned int VBO, VAO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    //uncomment for wireframe :)
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    
     // Loop until Window is closed
     while (!glfwWindowShouldClose(window))
     {
@@ -98,6 +116,9 @@ int main()
         //change colour of window
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        //Drawing Vertices
+        glUseProgram(shaderProgram);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
         // make window interactable
         glfwSwapBuffers(window);
         glfwPollEvents();
