@@ -86,9 +86,9 @@ int main()
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
         std::cout << "Shader Linking failed\n" << infoLog << std::endl;
     }
-    //remove now unneeded shader to free memory
+    //remove now unneeded shaders to free memory
     glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
+    glDeleteShader(fragmentShader);
 
     // Loop until Window is closed
     while (!glfwWindowShouldClose(window))
