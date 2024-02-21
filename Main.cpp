@@ -92,9 +92,9 @@ int main()
 
     //triangle display
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f, //left point
-        0.5f, -0.5f, 0.0f, //right point
-        0.0f, 0.5f, 0.0f, //top point
+        0.0f, -1.0f, 0.0f, //left point
+        1.0f, -1.0f, 0.0f, //right point
+        0.5f, 1.0f, 0.0f, //top point
     };
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
