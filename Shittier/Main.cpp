@@ -1,7 +1,14 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-
+/*
+*   float textureCoords[] = {
+        0.0f, 0.0f, //Bottom Left
+        1.0f, 0.0f, //Bottom Right
+        0.0f, 1.0f, //Top Left
+        1.0f, 1.0f //Top Right
+    };
+*/
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
@@ -115,7 +122,7 @@ int main()
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     //uncomment for wireframe :)
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
     // Loop until Window is closed
     while (!glfwWindowShouldClose(window))
