@@ -1,7 +1,14 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-
+/*
+*   float textureCoords[] = {
+        0.0f, 0.0f, //Bottom Left
+        1.0f, 0.0f, //Bottom Right
+        0.0f, 1.0f, //Top Left
+        1.0f, 1.0f //Top Right
+    };
+*/
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
@@ -18,7 +25,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+"FragColor = vec4(0.0f, 0.0f, 1.0f, 0.5f);\n"
 "}\n\0";
 
 int main()
@@ -92,15 +99,16 @@ int main()
 
     //vertices to display
     float vertices[] = {
-        -0.5f, 0.5f, 0.0f, //Top Left
-        0.5f, 0.5f, 0.0f, //Top Right
-        0.5f, -0.5f, 0.0f, //Bottom Right
-        -0.5f, -0.5f, 0.0f, //Bottom Left
+        -1.0f, 1.0f, 0.0f, //Top Left
+        1.0f, 1.0f, 0.0f, //Top Right
+        1.0f, -1.0f, 0.0f, //Bottom Right
+        -1.0f, -1.0f, 0.0f, //Bottom Left
     };
     unsigned int indices[] = {
         0, 1, 3, //first triangle
         1, 2, 3 //second triangle
     };
+
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -114,7 +122,7 @@ int main()
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     //uncomment for wireframe :)
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
     // Loop until Window is closed
     while (!glfwWindowShouldClose(window))
