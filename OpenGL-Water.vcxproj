@@ -101,7 +101,7 @@
     <LibraryPath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">
-    <IncludePath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water;C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,7 +109,7 @@
     <LibraryPath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'">
-    <IncludePath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water;C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\maxib\Desktop\Facharbeit\Programm\OpenGL-Water\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -203,6 +203,28 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="glad.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="VertexShader.vert">
+      <FileType>Document</FileType>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="FragmentShader.frag">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Test|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Test|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">4.0</ShaderModel>
+      <FileType>Document</FileType>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

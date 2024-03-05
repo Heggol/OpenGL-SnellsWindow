@@ -1,6 +1,9 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -8,18 +11,38 @@ void processInput(GLFWwindow* window);
 // settings for program
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"FragColor = vec4(0.0f, 0.0f, 1.0f, 0.5f);\n"
-"}\n\0";
+std::string LoadVertexShader(const std::string filepath)
+{
+    std::ifstream shaderFile(filepath);
+    if (!shaderFile.is_open())
+    {
+        std::cout << "Failed to open vertexShader file" + filepath << std::endl;
+    }
+
+    std::stringstream shaderStream;
+    shaderStream << shaderFile.rdbuf();
+    shaderFile.close();
+
+    return shaderStream.str();
+}
+std::string vertexShaderSourceStr = LoadVertexShader("VertexShader.vert");
+const GLchar* vertexShaderSource = vertexShaderSourceStr.c_str();
+
+std::string LoadFragmentShader(const std::string filepath)
+{
+    std::ifstream shaderFile(filepath);
+    if (!shaderFile.is_open())
+    {
+        std::cout << "Failed to open fragmentShader file" + filepath << std::endl;
+    }
+    std::stringstream shaderStream;
+    shaderStream << shaderFile.rdbuf();
+    shaderFile.close();
+
+    return shaderStream.str();
+}
+std::string fragmentShaderSourceStr = LoadFragmentShader("FragmentShader.frag");
+const GLchar* fragmentShaderSource = fragmentShaderSourceStr.c_str();
 
 int main()
 {
@@ -52,7 +75,7 @@ int main()
     }
     // build and compile Shaders
     //Vertex Shader:
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
     //check for errors compiling
@@ -65,7 +88,7 @@ int main()
         std::cout << "Error Vertex Shader Compilation failed\n" << infoLog << std::endl;
     }
     //Fragment Shader:
-    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
     glCompileShader(fragmentShader);
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
