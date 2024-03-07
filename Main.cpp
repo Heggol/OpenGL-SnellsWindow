@@ -10,7 +10,7 @@ void processInput(GLFWwindow* window);
 
 // settings for program
 const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_HEIGHT = 800;
 std::string LoadVertexShader(const std::string filepath)
 {
     std::ifstream shaderFile(filepath);
