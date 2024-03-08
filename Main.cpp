@@ -4,13 +4,14 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <Windows.h>
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
 void processInput(GLFWwindow* window);
 
 // settings for program
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 800;
+const unsigned int SCR_WIDTH = 1024;
+const unsigned int SCR_HEIGHT = 1024;
 std::string LoadVertexShader(const std::string filepath)
 {
     std::ifstream shaderFile(filepath);
@@ -65,7 +66,6 @@ int main()
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // load all OpenGL function pointer
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -112,6 +112,10 @@ int main()
     //remove now unneeded shaders to free memory
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+
+    glUseProgram(shaderProgram);
+    GLint uniformLocation = glGetUniformLocation(shaderProgram, "u_resolution");
+    glUniform2f(uniformLocation, SCR_WIDTH, SCR_HEIGHT);
 
     //vertices to display
     float vertices[] = {
@@ -171,11 +175,4 @@ void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-}
-
-//whenever the window size changed this function executes and change window dimensions
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    // make sure the viewport matches the new window dimensions
-    glViewport(0, 0, width, height);
 }
