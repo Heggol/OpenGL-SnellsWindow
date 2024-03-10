@@ -17,7 +17,7 @@ std::string LoadVertexShader(const std::string filepath)
     std::ifstream shaderFile(filepath);
     if (!shaderFile.is_open())
     {
-        std::cout << "Failed to open vertexShader file" + filepath << std::endl;
+        std::cout << "Failed to open vertexShader file" + filepath << "\n";
     }
 
     std::stringstream shaderStream;
@@ -28,13 +28,14 @@ std::string LoadVertexShader(const std::string filepath)
 }
 std::string vertexShaderSourceStr = LoadVertexShader("VertexShader.vert");
 const GLchar* vertexShaderSource = vertexShaderSourceStr.c_str();
+
 //load fragment shader from a different file
 std::string LoadFragmentShader(const std::string filepath)
 {
     std::ifstream shaderFile(filepath);
     if (!shaderFile.is_open())
     {
-        std::cout << "Failed to open fragmentShader file" + filepath << std::endl;
+        std::cout << "Failed to open fragmentShader file" + filepath << "\n";
     }
     std::stringstream shaderStream;
     shaderStream << shaderFile.rdbuf();
@@ -56,7 +57,7 @@ int main()
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Window", NULL, NULL);
     if (window == NULL)
     {
-        std::cout << "Failed to create Window" << std::endl;
+        std::cout << "Failed to create Window\n";
         glfwTerminate();
         return -1;
     }
@@ -65,7 +66,7 @@ int main()
     // load all OpenGL function pointers
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        std::cout << "Failed to initialize GLAD" << std::endl;
+        std::cout << "Failed to initialize GLAD\n";
         return -1;
     }
     //build and compile Shaders
@@ -80,7 +81,7 @@ int main()
     if (!success)
     {
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout << "Error Vertex Shader Compilation failed\n" << infoLog << std::endl;
+        std::cout << "Error Vertex Shader Compilation failed\n" << infoLog << "\n";
     }
     //Fragment Shader:
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -91,7 +92,7 @@ int main()
     if (!success)
     {
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cout << "Error Fragment Shader Compilation failed\n" << infoLog << std::endl;
+        std::cout << "Error Fragment Shader Compilation failed\n" << infoLog << "\n";
     }
     //linking the shaders
     unsigned int shaderProgram = glCreateProgram();
@@ -103,10 +104,10 @@ int main()
     if (!success)
     {
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout << "Shader Linking failed\n" << infoLog << std::endl;
+        std::cout << "Shader Linking failed\n" << infoLog << "\n";
     }
 
-    //remove now unneeded shaders to free memory
+    //remove now unneeded shaders
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 

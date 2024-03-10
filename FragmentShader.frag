@@ -1,11 +1,11 @@
-#version 330 core
+#version 450 core
 out vec4 FragColor;
 in vec4 vertCoords;
 void main()
 {
 	float brightness = 0.25f;
 	vec2 center = vec2(0.0f, 0.0f);
-	float radius = 0.5f;
+	float radius = 0.56695f;
 	float dist = distance(vertCoords.xy, center);
 	if(dist < radius)
 	{
