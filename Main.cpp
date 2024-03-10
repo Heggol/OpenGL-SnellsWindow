@@ -1,15 +1,14 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <Windows.h>
+#include<fstream>
+#include<sstream>
+#include<string>
+#include<Windows.h>
 
-
+//declaring a function for input processing
 void processInput(GLFWwindow* window);
-
-// settings for program
+//declaring height and width
 const unsigned int SCR_WIDTH = 1024;
 const unsigned int SCR_HEIGHT = 1024;
 //load vertexShader from a different file
