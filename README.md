@@ -1,1 +1,1 @@
-# OpenGL-Water
+# OpenGL-SnellsWindow
