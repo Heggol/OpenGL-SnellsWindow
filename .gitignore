@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/OpenGL-Water.sln
+/OpenGL-Water.vcxproj
+/OpenGL-Water.vcxproj.filters
